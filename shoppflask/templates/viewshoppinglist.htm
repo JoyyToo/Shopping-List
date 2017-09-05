@@ -6,7 +6,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>View shoppinglist</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <link href="{{ url_for('static', filename ='bootstrap/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
 
     <!-- Custom css-->
     <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
@@ -38,8 +41,9 @@
             <a href="shoppinglist/{{ data[shp]['name']  }}">{{ data[shp]['name'] }}</a>
             <p>{{ data[shp]['desc'] }}</p>
             <a href="shoppinglist/{{ data[shp]['name']  }}"><button class="btn btn-outline-success" style="width: 200px">View</button></a>
-            <a href="updatelist/{{ data[shp]['name']  }}"><button  class="btn btn-outline-secondary" style="width: 200px;">Update</button></a>
-            <a href="deleteitem/{{ data[shp]['name']  }}"><button class="btn btn-outline-danger" style="width: 200px;">Delete</button></a>
+        <a href="updatelist/{{ data[shp]['name']  }}"><span class="glyphicon glyphicon-pencil" style="width: 30px;"></span></a>
+            <a href="deleteitem/{{ data[shp]['name']  }}"><span class="glyphicon glyphicon-trash"></span></a>
+</a>
 
             <br><br>
         {% endfor %}
