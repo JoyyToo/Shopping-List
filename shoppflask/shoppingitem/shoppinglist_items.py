@@ -61,17 +61,16 @@ class ListItems(object):
 
     def view_item(self, name):
         """User can view items in a list"""
+        sl = []
         if name not in self.items.keys():
             return {
                 "type": "error",
                 "msg": "Item Unavailable"
             }
-        self.items[name] = {
-            "name": name
-        }
+        self.items[name] = sl.append(name)
         return {
             "type": "success",
-            "data": self.items
+            "data": self.items.pop(name)
         }
 
     def delete_item(self, name):
@@ -89,7 +88,7 @@ class ListItems(object):
                 'msg': 'Item unavailable'
             }
 
-    def save(self):
+    def save(self, id):
         """Saves items entered in a list"""
         if self.category in self.categories:
             if self.name not in self.items.keys():
