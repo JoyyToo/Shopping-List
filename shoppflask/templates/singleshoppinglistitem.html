@@ -10,6 +10,8 @@
 
     <!-- Custom css-->
     <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
     <!-- Navigation -->
@@ -36,15 +38,12 @@
 {% if data %}
         {% for i in data %}
 
-            {% data %}
-{#            <a href="shoppingitems/{{ data['name']  }}">{{data['name'] }}</a>#}
-{#            <p>{{ i['amount'] }}</p>#}
-{#            <p>{{ i['cat'] }}</p>#}
+        <a href="shoppingitems/{{ i['name']  }}">{{i['name'] }}</a>
+        <p>{{ i['amount'] }}</p>
+        <p>{{ i['cat'] }}</p>
 
-            <a href="/additem/{{ data['name'] }}"><button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-pencil"></span> Pencil
-        </button></a>
-            <a href="/additem/{{ data['name'] }}"><button class="btn btn-outline-success" style="width: 20%;">delete</button></a>
+            <a href="/additem/{{ data['name'] }}"> <span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="/additem/{{ data['name'] }}"><span class="glyphicon glyphicon-trash"></span></a>
 
             <br><br>
         {% endfor %}
