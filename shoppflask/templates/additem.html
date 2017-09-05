@@ -32,6 +32,8 @@
     </nav>
 
     <form action="" method="post">
+            <p style="margin-top: 100px; text-align: center;"><u><b>ADD ITEMS TO LIST</b></u></p>
+            <h4  style="margin-bottom: 100px; text-align: center;"><a href="{{ url_for('view_shoppinglist') }}">View Shopping Lists</a></h4>
 
        <div align="center">
          {% if data and data['type'] == "error" %}
