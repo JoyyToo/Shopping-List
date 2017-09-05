@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session, url_for
 from flask import redirect
 from flask import request
-from shoppinglist.Shopping import ShoppingList
+from shoppflask.shoppinglist.Shopping import ShoppingList
 from user.user import User
 from shoppingitem.shoppinglist_items import ListItems
 
