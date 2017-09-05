@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View shoppinglist</title>
+    <link href="{{ url_for('static', filename ='bootstrap/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom css-->
+    <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
+</head>
+<body>
+     <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="{{ url_for('home') }}">SHOPPING LIST</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('about') }}">About</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="new" style="margin-top: 100px; text-align: center">
+    <p style="margin-top: 50px"><b><u>SHOPPING LISTS</u></b></p>
+        <h4><a href="{{ url_for('shoppinglist') }}"> Add new list</a></h4>
+    {% if data %}
+        {% for shp in data %}
+            <a href="shoppinglist/{{ data[shp]['name']  }}">{{ data[shp]['name'] }}</a>
+            <p>{{ data[shp]['desc'] }}</p>
+            <a href="shoppinglist/{{ data[shp]['name']  }}"><button class="btn btn-outline-success" style="width: 200px">View</button></a>
+            <a href="updatelist/{{ data[shp]['name']  }}"><button  class="btn btn-outline-secondary" style="width: 200px;">Update</button></a>
+            <a href="deleteitem/{{ data[shp]['name']  }}"><button class="btn btn-outline-danger" style="width: 200px;">Delete</button></a>
+
+            <br><br>
+        {% endfor %}
+
+    {% else %}
+
+        Sorry, Shopping list not available at this time.
+
+    {% endif %}
+    </div>
+</body>
+</html>
