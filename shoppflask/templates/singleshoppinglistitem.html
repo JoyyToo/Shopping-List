@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping list</title>
+    <link href="{{ url_for('static', filename ='bootstrap/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom css-->
+    <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="{{ url_for('home') }}">SHOPPING LIST</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('about') }}">About</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+<div class="new" style="margin-top: 100px; text-align: center">
+    <p style="margin-top: 50px"><u><b>SHOPPING LIST ITEMS</b></u></p>
+
+{% if data %}
+        {% for i in data %}
+
+            {% data %}
+{#            <a href="shoppingitems/{{ data['name']  }}">{{data['name'] }}</a>#}
+{#            <p>{{ i['amount'] }}</p>#}
+{#            <p>{{ i['cat'] }}</p>#}
+
+            <a href="/additem/{{ data['name'] }}"><button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-pencil"></span> Pencil
+        </button></a>
+            <a href="/additem/{{ data['name'] }}"><button class="btn btn-outline-success" style="width: 20%;">delete</button></a>
+
+            <br><br>
+        {% endfor %}
+
+    {% else %}
+
+        Sorry, Shopping item not available at this time.
+
+    {% endif %}
+</div>
+</body>
+</html>
