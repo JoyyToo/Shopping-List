@@ -1,13 +1,20 @@
+"""User class"""
+
+
 class User(object):
+    """User class"""
     user = {}
 
     def __init__(self):
-        name = None
-        passwd = None
+        """Initializes the class """
 
     def register(self, name, passwd, cpasswd, email):
-
+        """Registers user"""
         if name and passwd and email and cpasswd:
+            msg = {
+                "type": "error",
+                "msg": "Passwords not matching"
+            }
             if passwd == cpasswd:
 
                 new_user = {
@@ -23,11 +30,7 @@ class User(object):
                     "type": "success",
                     "msg": "You have registered successfully"
                 }
-            else:
-                return {
-                    "type": "error",
-                    "msg": "Passwords not matching"
-                }
+            return msg
 
         else:
             return {
@@ -36,7 +39,7 @@ class User(object):
             }
 
     def login(self, passwd, email):
-
+        """Enables user login"""
         if email and passwd:
             msg = {
                 "type": "error",
