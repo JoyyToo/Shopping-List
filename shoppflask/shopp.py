@@ -1,8 +1,10 @@
-from flask import Flask, render_template, session, url_for
+"""flask module"""
+
+from user.user import User
+from flask import Flask, render_template, session
 from flask import redirect
 from flask import request
-from shoppflask.shoppinglist.Shopping import ShoppingList
-from user.user import User
+from shoppinglist.Shopping import ShoppingList
 from shoppingitem.shoppinglist_items import ListItems
 
 
@@ -13,18 +15,24 @@ shpitem = ListItems()
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
+# index
 @app.route('/')
 def home():
+    """Defines landing page"""
     return render_template('index.html')
 
 
+# about page
 @app.route('/about')
 def about():
+    """Defines about page"""
     return render_template('about.html')
 
 
+# login page
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    """Defines login page"""
     if 'logged_in' in session.keys():
         return redirect('/')
     data = None
@@ -40,10 +48,13 @@ def login():
     return render_template('login.html', data=data)
 
 
+# sign up page
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
+    """Defines sign up page"""
     if 'logged_in' in session.keys():
         return redirect('/')
+    data = None
     if request.method == 'POST':
         name = request.form['name']
         passwd = request.form['pass']
@@ -53,11 +64,13 @@ def signup():
         data = user.register(name, passwd, email, cpasswd)
         if data['type'] == "success":
             return redirect('/login')
-    return render_template('signup.html')
+    return render_template('signup.html', data=data)
 
 
+# logout page
 @app.route('/logout')
 def logout():
+    """Defines logout page"""
     if 'logged_in' in session.keys():
         session.pop('logged_in', None)
     return redirect('/')
@@ -66,15 +79,16 @@ def logout():
 # shopping list
 @app.route('/shoppinglist')
 def view_shoppinglist():
+    """Defines page to view shopping list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
     data = shplist.all_shoppinglist()
-    print(data)
     return render_template('viewshoppinglist.htm', data=data)
 
 
 @app.route('/deleteitem/<string:id>')
 def delete_shoppinglist(id):
+    """Defines page to delete shopping list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
     data = shplist.delete_shoppinglist(id)
@@ -83,6 +97,7 @@ def delete_shoppinglist(id):
 
 @app.route('/shoppinglist/<string:id>')
 def single_shoppinglist(id):
+    """Defines page to view single shopping list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
     data = shplist.single_shoppinglist(id)
@@ -91,10 +106,10 @@ def single_shoppinglist(id):
 
 @app.route('/shp', methods=["GET", "POST"])
 def shoppinglist():
+    """Defines page to create shopping lists"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
     data = None
-    print("Add shopping")
     if request.method == 'POST':
         name = request.form['name']
         desc = request.form['desc']
@@ -107,24 +122,27 @@ def shoppinglist():
 
 @app.route('/updatelist/<string:id>', methods=['GET', 'POST'])
 def updatelist(id):
+    """Defines page to update shopping list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
     data = shplist.delete_shoppinglist(id)
     return redirect('/shp')
 
 
-@app.route('/additem/<string:id>', methods=["GET", "POST"])
-def shoppingitems(id):
+@app.route('/additem/<string:bucket>', methods=["GET", "POST"])
+def shoppingitems(bucket):
+    """Defines page to add items to list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
     data = None
-    print(data)
+    bucket = bucket
     if request.method == 'POST':
         name = request.form['name']
         amount = request.form['amount']
         cat = request.form['cat']
 
-        data = shpitem.add_item(name, amount, cat)
+        data = shpitem.add_item(name, amount, cat, bucket)
+
         if "success" in data["type"]:
             return redirect('/shoppinglist')
     return render_template('additem.html', data=data)
@@ -132,35 +150,35 @@ def shoppingitems(id):
 
 @app.route('/shoppingitems/<string:id>')
 def single_shoppinglistitem(id):
+    """Defines viewing shopping list items"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
-    data = shpitem.save(id)
-    print(data)
+    data = shpitem.view_item(id)
     return render_template('singleshoppinglistitem.html', data=data)
 
-#
-# @app.route('/shoppingitem')
-# def view_shoppinglistitem():
-#     if 'logged_in' not in session.keys():
-#         return redirect('/login')
-#     data = shpitem.all_shoppinglistitems()
-#     return redirect('/singleshoppinglistitem.html')
-
-
-@app.route('/deleteitem/<string:id>')
+@app.route('/deleteshpitem/<string:id>')
 def delete_shoppinglistitem(id):
+    """Defines page to delete items in list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
     data = shpitem.delete_item(id)
-    return redirect('/additem/<string:id>')
+    return redirect('/shoppinglist')
 
 
-@app.route('/updatelist/<string:id>', methods=['GET', 'POST'])
+@app.route('/updateshpitem/<string:id>', methods=['GET', 'POST'])
 def updateitems(id):
+    """Defines page to update items in list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
-    data = shpitem.delete_item(id)
-    return redirect('/additem')
+
+    if request.method == 'POST':
+        name = request.form['name']
+        amount = request.form['amount']
+        cat = request.form['cat']
+
+        data = shpitem.update_item(name, amount, cat)
+
+    return redirect('/additem/<string:bucket>')
 
 
 if __name__ == '__main__':
