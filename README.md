@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/JoyyToo/Shopping-List.svg?branch=develop)](https://travis-ci.org/JoyyToo/Shopping-List)
+[![Build Status](https://travis-ci.org/JoyyToo/Shopping-List.svg?branch=master)](https://travis-ci.org/JoyyToo/Shopping-List) [![Coverage Status](https://coveralls.io/repos/github/JoyyToo/Shopping-List/badge.svg?branch=master)](https://coveralls.io/github/JoyyToo/Shopping-List?branch=master)
 
 # ShoppingList
 
