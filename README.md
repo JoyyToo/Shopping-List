@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/JoyyToo/ShoppingList.svg?branch=master)](https://travis-ci.org/JoyyToo/ShoppingList)
-
+[![Build Status](https://travis-ci.org/JoyyToo/Shopping-List.svg?branch=develop)](https://travis-ci.org/JoyyToo/Shopping-List)
 
 # ShoppingList
 
