@@ -1,1 +1,1 @@
-web: gunicorn shoppflask:shopp
+web: waitress-serve shoppflask:shopp
