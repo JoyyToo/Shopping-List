@@ -43,14 +43,6 @@ body{
  img::-moz-selection{
  	background:0 0
  }
- #myform {
-    width: 100%;
-    text-align: center;
-    margin: 200px
-    auto 0 auto;
-
-}
-
 
 .title {
     margin-top: 70px;
