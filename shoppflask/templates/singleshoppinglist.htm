@@ -11,7 +11,7 @@
     <!-- Custom css-->
     <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
 </head>
-<body>
+<body background="{{ url_for('static', filename='img/pic.jpg') }}">
      <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
@@ -31,15 +31,18 @@
       </div>
     </nav>
 <div class="new" style="margin-top: 100px; text-align: center">
-    <p style="margin-top: 50px"><b><u>SHOPPING LISTS</u></b></p>
+    <h5 style="color:white; margin-top: 50px"><b><u>SHOPPING LISTS</u></b></h5>
 
 {% if data %}
-    <h5>{{ data['name'] }}</h5>
+    <h5 style="color: white;">{{ data['name'] }}</h5>
 
-    <p>{{ data['desc'] }}</p>
+    <p style="color: white;">{{ data['desc'] }}</p>
 
     <a href="/additem/{{ data['name'] }}"><button class="btn btn-outline-primary">Add Shopping list item</button></a>
     <a href="/shoppingitems/{{ data['name'] }}"><button class="btn btn-outline-success">View Shopping list items</button></a>
+    {% else %}
+
+    <p style="color: white;">ShoppingList unavailable</p>
 
 {% endif %}
 </div>
