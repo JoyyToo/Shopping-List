@@ -11,7 +11,7 @@
     <!-- Custom css-->
     <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
 </head>
-<body>
+<body background="{{ url_for('static', filename='img/pic.jpg') }}">
       <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
@@ -32,7 +32,7 @@
     </nav>
 
     <form action="" method="post">
-            <p style="margin-top: 100px; text-align: center;"><u><b>ADD ITEMS TO LIST</b></u></p>
+            <p style="margin-top: 100px; text-align: center; color: white;"><u><b>ADD ITEMS TO LIST</b></u></p>
             <h4  style="margin-bottom: 100px; text-align: center;"><a href="{{ url_for('view_shoppinglist') }}">View Shopping Lists</a></h4>
 
        <div align="center">
@@ -44,11 +44,13 @@
 
     <label for="name" style="width: 50%;">
         <b>Name:</b><br>
-        <input type="text" name="name" placeholder="Enter name of item">
+        <input type="text" name="name" placeholder="Enter name of item" pattern="^[a-zA-Z0-9 ]*$"
+               title="item names should be alphanumerics only">
     </label><br>
      <label for="amount" style="width: 50%;">
          <b>Amount:</b><br>
-        <input type="text" name="amount" placeholder="Enter amount of items">
+        <input type="text" name="amount" placeholder="Enter amount of items" pattern="^[a-zA-Z0-9 ]*$"
+               title="Enter integers only">
     </label><br>
      <label for="category" style="width: 50%;">
          <b>Category:</b><br>
