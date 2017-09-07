@@ -17,7 +17,7 @@ class ListItems(object):
         self.category = None
         self.amount = None
 
-    def add_item(self, name, amount, category, bucket):
+    def add_item(self, name, amount, category, shopping):
         """Add items to a list"""
 
         if name != '' and amount != '' and category != '':
@@ -30,7 +30,7 @@ class ListItems(object):
                 "name": name,
                 "amount": amount,
                 "cat": category,
-                "bucket": bucket
+                "shopping": shopping
             }
             return {
                 "type": "success",
@@ -41,20 +41,18 @@ class ListItems(object):
             "msg": 'Fill in all fields'
         }
 
-    def update_item(self, name, amount, category):
+    def update_item(self, name, amount, category, shopping):
         """Update items in a list"""
-        if name and amount and category:
-            if self.name in self.items:
-                # returns original list under specificed list name
-                original_list = self.items[self.name]
-                # remove the original list name
-                original_list.remove(self.name)
-                # updated list by substituting names
-                original_list.append(self.amount)
-                temporary_dict = {self.name: original_list}
-                del self.items[self.name]
-                self.items.update(temporary_dict)
-                return self.items
+        if name and amount and category and shopping:
+            print (name, amount, category, shopping)
+            if name in self.items.keys():
+                self.items[name] = {
+                    "name": name,
+                    "amount": amount,
+                    "cat": category,
+                    "shopping": shopping
+                }
+
             else:
                 return {
                     'type': 'error',
@@ -71,7 +69,7 @@ class ListItems(object):
         data = []
         if self.items:
             for item in self.items:
-                if self.items[item]['bucket'] == name:
+                if self.items[item]['shopping'] == name:
                     data.append(self.items[item])
             if data:
                 return {
@@ -141,3 +139,7 @@ class ListItems(object):
                 'type': 'error',
                 'msg': 'Category Unrecognized'
             }
+
+    def singleItem(self, id):
+        if id in self.items.keys():
+            return self.items[id]
