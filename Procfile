@@ -1,1 +1,1 @@
-web: waitress-serve --threads=8 --port=$PORT shoppflask/shopp:app
+web: gunicorn shoppflask/shopp:app
