@@ -120,28 +120,33 @@ def shoppinglist():
     return render_template('shp.html', data=data)
 
 
-@app.route('/updatelist/<string:id>', methods=['GET', 'POST'])
-def updatelist(id):
+@app.route('/updatelist/<string:item>', methods=['GET', 'POST'])
+def updatelist(item):
     """Defines page to update shopping list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
-    data = shplist.delete_shoppinglist(id)
-    return redirect('/shp')
+    if request.method == "POST":
+        name = request.form['name']
+        desc = request.form['desc']
+        shplist.update_shoppinglist(name, desc)
+        return redirect('/shoppinglist')
+    data = shplist.single_shoppinglist(item)
+    return render_template('updateshoppinglist.html', data=data)
 
 
-@app.route('/additem/<string:bucket>', methods=["GET", "POST"])
-def shoppingitems(bucket):
+@app.route('/additem/<string:shopping>', methods=["GET", "POST"])
+def shoppingitems(shopping):
     """Defines page to add items to list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
     data = None
-    bucket = bucket
+    shopping = shopping
     if request.method == 'POST':
         name = request.form['name']
         amount = request.form['amount']
         cat = request.form['cat']
 
-        data = shpitem.add_item(name, amount, cat, bucket)
+        data = shpitem.add_item(name, amount, cat, shopping)
 
         if "success" in data["type"]:
             return redirect('/shoppinglist')
@@ -156,6 +161,7 @@ def single_shoppinglistitem(id):
     data = shpitem.view_item(id)
     return render_template('singleshoppinglistitem.html', data=data)
 
+
 @app.route('/deleteshpitem/<string:id>')
 def delete_shoppinglistitem(id):
     """Defines page to delete items in list"""
@@ -165,8 +171,8 @@ def delete_shoppinglistitem(id):
     return redirect('/shoppinglist')
 
 
-@app.route('/updateshpitem/<string:id>', methods=['GET', 'POST'])
-def updateitems(id):
+@app.route('/updateshpitem/<string:item>', methods=['GET', 'POST'])
+def updateitems(item):
     """Defines page to update items in list"""
     if 'logged_in' not in session.keys():
         return redirect('/login')
@@ -175,11 +181,14 @@ def updateitems(id):
         name = request.form['name']
         amount = request.form['amount']
         cat = request.form['cat']
+        shopping = request.form['shopping']
 
-        data = shpitem.update_item(name, amount, cat)
+        shpitem.update_item(name, amount, cat, shopping)
 
-    return redirect('/additem/<string:bucket>')
+        return redirect('/shoppingitems/'+shopping)
 
+    data = shpitem.singleItem(item)
+    return render_template("updateitem.html", data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
