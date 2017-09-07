@@ -191,4 +191,4 @@ def updateitems(item):
     return render_template("updateitem.html", data=data)
 
 if __name__ == '__main__':
-    app.run
+    app.run()
