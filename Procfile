@@ -1,1 +1,1 @@
-web: gunicorn ShoppingList/shoppflask/shopp:app
+web: gunicorn shoppflask/shopp:app
