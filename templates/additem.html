@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add shopping list</title>
+    <link href="{{ url_for('static', filename ='bootstrap/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom css-->
+    <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
+</head>
+<body background="{{ url_for('static', filename='img/pic.jpg') }}">
+      <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="{{ url_for('home') }}">SHOPPING LIST</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('about') }}">About</a>
+            </li>
+              <li>
+              <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <form action="" method="post">
+            <p style="margin-top: 100px; text-align: center; color: white;"><u><b style="color: white;">ADD ITEMS TO LIST</b></u></p>
+            <h4  style="margin-bottom: 100px; text-align: center;"><a href="{{ url_for('view_shoppinglist') }}">View Shopping Lists</a></h4>
+
+       <div align="center" style="color: white;">
+         {% if data and data['type'] == "error" %}
+        {{ data['msg'] }}
+        {% endif %}
+     </div>
+    <div class="container" style=" margin-top: 100px;">
+
+    <label for="name" style="width: 50%;">
+        <b style="color: white;">Name:</b><br>
+        <input type="text" name="name" placeholder="Enter name of item" pattern="^[a-zA-Z0-9 ]*$"
+               title="item names should be alphanumerics only">
+    </label><br>
+     <label for="amount" style="width: 50%;">
+         <b style="color: white;">Amount:</b><br>
+        <input type="text" name="amount" placeholder="Enter amount of items" pattern="^[a-zA-Z0-9 ]*$"
+               title="Enter integers only">
+    </label><br>
+     <label for="category" style="width: 50%;">
+         <b style="color: white;">Category:</b><br>
+        <input type="text" name="cat" placeholder="Enter category of item">
+    </label><br>
+
+     <div class="buttons">
+      <button type="submit" class="signinbtn">Add Item</button>
+     </div>
+    </div>
+
+</form>
+</body>
+</html>
