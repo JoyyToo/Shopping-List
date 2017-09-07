@@ -40,6 +40,7 @@ class ShoppingList(object):
     def update_shoppinglist(self, name, desc):
         """Updates a shopping list"""
         if name and desc:
+            # print (name, desc, self.shoppinglist[name], self.shoppinglist)
             if name not in self.shoppinglist.keys():
                 return {
                     "type": "error",
@@ -49,6 +50,7 @@ class ShoppingList(object):
                 "name": name,
                 "desc": desc
             }
+            print (self.shoppinglist)
             return {
                 "type": "success",
                 "data": self.shoppinglist
