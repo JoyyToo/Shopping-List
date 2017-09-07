@@ -1,1 +1,1 @@
-web: waitress-serve shoppflask:shopp
+web: waitress-serve shoppflask/shopp:app
