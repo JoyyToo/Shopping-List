@@ -40,28 +40,28 @@ class TestForClassListItems(unittest.TestCase):
     # tests for update item function
     def test_for_empty_update_fields(self):
         """Test for empty update field"""
-        result = self.item.update_item('', '', '')
+        result = self.item.update_item('', '', '', '')
         self.assertEqual({"type": "error", "msg": 'Fill in all fields'}, result, msg=None)
 
     def test_for_empty_uname_field(self):
         """Test for empty update name field"""
-        result = self.item.update_item('', '3 pieces', 'Bathing Supplies')
+        result = self.item.update_item('', '3 pieces', 'Bathing Supplies', 'shopping')
         self.assertEqual({"type": "error", "msg": 'Fill in all fields'}, result, msg=None)
 
     def test_for_empty_uamount_fields(self):
         """Test for empty update amount field"""
-        result = self.item.update_item('soap', '', 'Bathing Supplies')
+        result = self.item.update_item('soap', '', 'Bathing Supplies', 'shopping')
         self.assertEqual({"type": "error", "msg": 'Fill in all fields'}, result, msg=None)
 
     def test_for_empty_ucategory_field(self):
         """Test for empty update category field"""
-        result = self.item.update_item('soap', '3 pieces', '')
+        result = self.item.update_item('soap', '3 pieces', '', 'shopping')
         self.assertEqual({"type": "error", "msg": 'Fill in all fields'}, result, msg=None)
 
     def test_for_update_a_missing_item(self):
         """Test for update missing item"""
-        self.item.update_item('soap', '3 pieces', 'Bathroom Supplies')
-        result = self.item.update_item('ginger', '3 pieces', 'Bathroom Supplies')
+        self.item.update_item('soap', '3 pieces', 'Bathroom Supplies', 'shopping')
+        result = self.item.update_item('ginger', '3 pieces', 'Bathroom Supplies', 'shopping')
         self.assertEqual({"type": "error", "msg": "Item unavailable"}, result, msg=None)
 
     # tests for view item function
