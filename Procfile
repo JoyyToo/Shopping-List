@@ -1,1 +1,1 @@
-web: waitress-serve shoppflask/shopp:app
+web: waitress-serve --threads=8 shoppflask/shopp:app
