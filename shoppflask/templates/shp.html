@@ -33,14 +33,15 @@
       </div>
     </nav>
 
-    <form action="" method="post"">
-    <div align="center">
+    <form action="" method="post">
+    <div align="center" style="color: white;">
          {% if data and data['type'] == "error" %}
         {{ data['msg'] }}
         {% endif %}
      </div>
+         <p><u style="color: white"><b style="color: white;">ADD LIST</b></u></p>
     <div class="container">
-        <p style=" color: white;text-align: center;"><u><b>ADD LIST</b></u></p>
+
         <h4 style="margin-bottom: 100px;"><a href="{{ url_for('view_shoppinglist') }}">View Shopping Lists</a></h4>
 
 
