@@ -6,6 +6,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shopping list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link href="{{ url_for('static', filename ='bootstrap/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom css-->
@@ -32,19 +36,18 @@
       </div>
     </nav>
 <div class="new" style="margin-top: 100px; text-align: center">
-    <h3 style="margin-top: 50px"><u><b>SHOPPING LIST ITEMS</b></u></h3>
-    <p  style="margin-bottom: 100px; text-align: center;"><a href="{{ url_for('view_shoppinglist') }}">Back to Shopping Lists</a></p>
+    <h3 style="margin-top: 50px"><u><b style="color:white;">SHOPPING LIST ITEMS</b></u></h3>
+    <p  style="margin-bottom: 30px; text-align: center;"><a href="{{ url_for('view_shoppinglist') }}">Back to Shopping Lists</a></p>
 
     {% if data %}
         {% for item in data['data'] %}
-            <h4> <b>~{{ item['name'] }}</b></h4>
-            <p>Amount: {{ item['amount'] }}</p>
-            <p>Category: {{ item['cat'] }}</p>
-            <a href="/updateshpitem/{{ item['name']  }}"><button class="btn btn-outline-secondary" style="width: 100px;">Update</button></a>
-            <a href="/deleteshpitem/{{ item['name']  }}"><button class="btn btn-outline-danger" style="width: 100px;">Delete</button></a>
-    <br>
+            <h4> <b style="color:white;">{{ item['name'] }}</b>
+                <a href="/updateshpitem/{{ item['name']  }}"> <i class="fa fa-edit"></i></a>
+                <a href="/deleteshpitem/{{ item['name']  }}"><i class="fa fa-trash"></i></a>
+                <p style="color:white;">Amount: {{ item['amount'] }} ** Category: {{ item['cat'] }}</p>
+
             ----------------------------------------
-    <br><br>
+    <br>
     {% endfor %}
     {% else %}
         Not available

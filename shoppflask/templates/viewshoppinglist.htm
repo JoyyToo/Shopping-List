@@ -33,8 +33,8 @@
       </div>
     </nav>
     <div class="new" style=" margin-top: 100px; text-align: center">
-    <h3 style="color:white; margin-top: 50px"><b><u>SHOPPING LISTS</u></b></h3>
-        <h4><a href="{{ url_for('shoppinglist') }}"> Add new list</a></h4>
+    <h3 style="margin-top: 50px; margin-bottom:30px;"><b style="color:white;"><u>SHOPPING LISTS</u></b></h3>
+        <h4 style="margin-bottom: 30px;"><a href="{{ url_for('shoppinglist') }}"> Add new list</a></h4>
     {% if data %}
         {% for shp in data %}
             <a href="shoppinglist/{{ data[shp]['name']  }}">{{ data[shp]['name'] }}</a>

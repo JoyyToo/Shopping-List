@@ -1,1 +1,1 @@
-web: waitress-serve --threads=8 shoppflask/shopp:app
+web: gunicorn shoppflask/shopp:app
