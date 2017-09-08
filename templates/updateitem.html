@@ -25,6 +25,10 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="{{ url_for('about') }}">About</a>
             </li>
+               <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+
 
           </ul>
         </div>
@@ -44,7 +48,7 @@
 
      <label for="amount" style="width: 50%;">
          <b style="color: white;">Amount:</b><br>
-        <input type="text" name="amount" value="{{data['amount']}}" placeholder="Enter amount of items" pattern="^[a-zA-Z0-9 ]*$"
+        <input type="text" name="amount" value="{{data['amount']}}" placeholder="Enter amount of items" pattern="^[0-9 ]*$"
                title="Enter integers only">
     </label><br>
      <label for="category" style="width: 50%; color: white;">
