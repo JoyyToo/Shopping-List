@@ -6,7 +6,9 @@ class User(object):
     user = {}
 
     def __init__(self):
-        """Initializes the class """
+        self.name = None
+        self.passwd = None
+        self.email = None
 
     def register(self, name, passwd, cpasswd, email):
         """Registers user"""
