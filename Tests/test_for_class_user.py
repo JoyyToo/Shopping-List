@@ -2,7 +2,7 @@
 
 import unittest
 
-from ShoppingList.user.user import User
+from user.user import User
 
 
 class TestForUserClass(unittest.TestCase):
