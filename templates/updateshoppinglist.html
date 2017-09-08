@@ -1,17 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View shoppingitems</title>
+    <title>Update shopping list</title>
     <link href="{{ url_for('static', filename ='bootstrap/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom css-->
     <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
 </head>
-<body>
+<body background="{{ url_for('static', filename='img/pic.jpg') }}">
+<div class="new" style="text-align: center;" >
      <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
@@ -25,28 +27,37 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="{{ url_for('about') }}">About</a>
             </li>
+               <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+
 
           </ul>
         </div>
       </div>
     </nav>
- <div class="new">
 
-    {% if data %}
-        {% for additem in data %}
-            <a href="shoppingitems/{{ data[additem]['name']  }}">{{ data[additem][''] }}</a>
-            <p>{{ data[additem]['cat'] }}</p>
-            <a href="shoppingitems/{{ data[additem]['name']  }}"><button>View Items</button></a>
-            <a href="deleteitem/{{ data[additem]['name']  }}"><button>Delete</button></a>
-            <a href="updatelist/{{ data[additem]['name']  }}"><button>Update</button></a>
-            <br><br>
-        {% endfor %}
+    <form action="" method="post">
+    <div align="center">
+     </div>
+    <div class="container">
+        <h4 style="margin-bottom: 30px;"><a href="{{ url_for('view_shoppinglist') }}">View Shopping Lists</a></h4>
+        <p style="text-align: center;"><u><b style="color: white">Update {{ data['name'] }}</b></u></p>
 
-    {% else %}
+    <label for="name" style="width: 50%;">
+        <!--<b style="color: white;">ShoppingList Name:</b><br>-->
+        <input type="hidden" value="{{ data['name'] }}"  name="name" placeholder="Enter name of list" pattern="^[a-zA-Z0-9 ]*$"
+               title="List name should be alphanumerics only">
+    </label><br>
+        <b style="color: white;">Description:</b><br>
+    <label for="description" >
+        <textarea cols="80" name="desc" placeholder="Describe your list....." style="text-align: center;">{{ data['desc'] }}</textarea>
+    </label><br>
 
-        Sorry, Shopping item not available at this time.
+    <button type="submit" class="signinbtn">Update list</button>
+    </div>
 
-    {% endif %}
+</form>
 </div>
 </body>
 </html>

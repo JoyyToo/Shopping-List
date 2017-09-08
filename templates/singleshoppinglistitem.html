@@ -30,6 +30,10 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="{{ url_for('about') }}">About</a>
             </li>
+               <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+
 
           </ul>
         </div>
@@ -41,11 +45,12 @@
 
     {% if data %}
         {% for item in data['data'] %}
-            <h4> <b style="color:white;">{{ item['name'] }}</b>
-                <a href="/updateshpitem/{{ item['name']  }}"> <i class="fa fa-edit"></i></a>
-                <a href="/deleteshpitem/{{ item['name']  }}"><i class="fa fa-trash"></i></a>
-                <p style="color:white;">Amount: {{ item['amount'] }} ** Category: {{ item['cat'] }}</p>
+    <h4> <b style="color:white;">{{ item['name'] }}</b></h4>
 
+                <p style="color:white;">Amount: {{ item['amount'] }} || Category: {{ item['cat'] }}</p>
+                 <a href="/updateshpitem/{{ item['name']  }}"> <i class="fa fa-edit"></i></a>
+                <a href="/deleteshpitem/{{ item['name']  }}"><i class="fa fa-trash"></i></a>
+<br><br>
             ----------------------------------------
     <br>
     {% endfor %}

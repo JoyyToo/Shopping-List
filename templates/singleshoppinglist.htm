@@ -5,10 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View shoppinglist</title>
-
+    <title>Shopping list</title>
     <link href="{{ url_for('static', filename ='bootstrap/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-
 
     <!-- Custom css-->
     <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
@@ -27,30 +25,30 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="{{ url_for('about') }}">About</a>
             </li>
+               <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+
 
           </ul>
         </div>
       </div>
     </nav>
-    <div class="new" style=" margin-top: 100px; text-align: center">
-    <h3 style="margin-top: 50px; margin-bottom:30px;"><b style="color:white;"><u>SHOPPING LISTS</u></b></h3>
-        <h4 style="margin-bottom: 30px;"><a href="{{ url_for('shoppinglist') }}"> Add new list</a></h4>
-    {% if data %}
-        {% for shp in data %}
-            <a href="shoppinglist/{{ data[shp]['name']  }}">{{ data[shp]['name'] }}</a>
-            <p style="color: white;">Description: {{ data[shp]['desc'] }}</p>
-            <a href="shoppinglist/{{ data[shp]['name']  }}"><button class="btn btn-outline-success" style="width: 200px">View</button></a>
-            <a href="updatelist/{{ data[shp]['name']  }}"><button class="btn btn-outline-secondary" style="width: 200px">Update</button></a>
-            <a href="deleteitem/{{ data[shp]['name']  }}"><button class="btn btn-outline-danger" style="width: 200px">Delete</button></a>
+<div class="new" style="margin-top: 100px; text-align: center">
+    <h5 style="margin-top: 50px"><b style="color:white;"><u>SHOPPING LISTS</u></b></h5>
 
-            <br><br>
-        {% endfor %}
+{% if data %}
+    <h5 style="color: white;">{{ data['name'] }}</h5>
 
+    <p style="color: white;">{{ data['desc'] }}</p>
+
+    <a href="/additem/{{ data['name'] }}"><button style="width: 200px;" class="btn btn-outline-primary">Add Shopping list item</button></a>
+    <a href="/shoppingitems/{{ data['name'] }}"><button style="width: 200px;" class="btn btn-outline-success">View Shopping list items</button></a>
     {% else %}
 
-        <p style="color: white;">Sorry, Shopping list not available at this time.</p>
+    <p style="color: white;">ShoppingList unavailable</p>
 
-    {% endif %}
-    </div>
+{% endif %}
+</div>
 </body>
 </html>

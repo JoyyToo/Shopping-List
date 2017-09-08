@@ -140,6 +140,7 @@ class ListItems(object):
                 'msg': 'Category Unrecognized'
             }
 
-    def singleItem(self, id):
+    def singleitem(self, id):
+        """Dislays a single item"""
         if id in self.items.keys():
             return self.items[id]

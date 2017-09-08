@@ -1,17 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shopping list</title>
+    <title>Add shopping list</title>
     <link href="{{ url_for('static', filename ='bootstrap/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom css-->
     <link href = "{{ url_for('static', filename='css/slist.css') }}" rel="stylesheet">
 </head>
 <body background="{{ url_for('static', filename='img/pic.jpg') }}">
+<div class="new" style="text-align: center;" >
      <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
@@ -25,26 +27,41 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="{{ url_for('about') }}">About</a>
             </li>
+               <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+            </li>
 
           </ul>
         </div>
       </div>
     </nav>
-<div class="new" style="margin-top: 100px; text-align: center">
-    <h5 style="margin-top: 50px"><b style="color:white;"><u>SHOPPING LISTS</u></b></h5>
 
-{% if data %}
-    <h5 style="color: white;">{{ data['name'] }}</h5>
+    <form action="" method="post">
+    <div align="center" style="color: white;">
+         {% if data and data['type'] == "error" %}
+        {{ data['msg'] }}
+        {% endif %}
+     </div>
+         <p><u style="color: white"><b style="color: white;">ADD LIST</b></u></p>
+    <div class="container">
 
-    <p style="color: white;">{{ data['desc'] }}</p>
+        <h4 style="margin-bottom: 100px;"><a href="{{ url_for('view_shoppinglist') }}">View Shopping Lists</a></h4>
 
-    <a href="/additem/{{ data['name'] }}"><button class="btn btn-outline-primary">Add Shopping list item</button></a>
-    <a href="/shoppingitems/{{ data['name'] }}"><button class="btn btn-outline-success">View Shopping list items</button></a>
-    {% else %}
 
-    <p style="color: white;">ShoppingList unavailable</p>
+    <label for="name" style="width: 50%;">
+        <b style="color: white;">ShoppingList Name:</b><br>
+        <input type="text" name="name" placeholder="Enter name of list" pattern="^[a-zA-Z0-9 ]*$"
+               title="List name should be alphanumerics only">
+    </label><br>
+        <b style="color: white;">Description:</b><br>
+    <label for="description" >
+        <textarea  cols="78" name="desc" placeholder="Describe your list....." style="text-align: center;"></textarea>
+    </label><br>
 
-{% endif %}
+    <button type="submit" class="signinbtn">Add list</button>
+    </div>
+
+</form>
 </div>
 </body>
 </html>

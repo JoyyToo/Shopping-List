@@ -1,7 +1,7 @@
 """flask module"""
-
 from user.user import User
-from flask import Flask, render_template, session
+from flask import Flask
+from flask import render_template, session
 from flask import redirect
 from flask import request
 from shoppinglist.Shopping import ShoppingList
@@ -44,7 +44,7 @@ def login():
 
         if data['type'] == "success":
             session['logged_in'] = data['user_detail']
-            return redirect('/shp')
+            return redirect('/shoppinglist')
     return render_template('login.html', data=data)
 
 
@@ -186,9 +186,7 @@ def updateitems(item):
         shpitem.update_item(name, amount, cat, shopping)
 
         return redirect('/shoppingitems/'+shopping)
-
-    data = shpitem.singleItem(item)
+# shoppingitems/'+shopping
+    data = shpitem.singleitem(item)
     return render_template("updateitem.html", data=data)
 
-if __name__ == '__main__':
-    app.run()

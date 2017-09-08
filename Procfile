@@ -1,1 +1,1 @@
-web: gunicorn shoppflask/shopp:app
+web: gunicorn run:app
