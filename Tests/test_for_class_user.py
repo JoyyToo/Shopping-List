@@ -1,7 +1,8 @@
 """Test for User class"""
 
 import unittest
-from shoppflask.user.user import User
+
+from ShoppingList.user.user import User
 
 
 class TestForUserClass(unittest.TestCase):
