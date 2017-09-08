@@ -25,6 +25,10 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="{{ url_for('about') }}">About</a>
             </li>
+               <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+
 
           </ul>
         </div>
@@ -38,8 +42,8 @@
 
     <p style="color: white;">{{ data['desc'] }}</p>
 
-    <a href="/additem/{{ data['name'] }}"><button class="btn btn-outline-primary">Add Shopping list item</button></a>
-    <a href="/shoppingitems/{{ data['name'] }}"><button class="btn btn-outline-success">View Shopping list items</button></a>
+    <a href="/additem/{{ data['name'] }}"><button style="width: 200px;" class="btn btn-outline-primary">Add Shopping list item</button></a>
+    <a href="/shoppingitems/{{ data['name'] }}"><button style="width: 200px;" class="btn btn-outline-success">View Shopping list items</button></a>
     {% else %}
 
     <p style="color: white;">ShoppingList unavailable</p>
